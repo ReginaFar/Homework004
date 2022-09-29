@@ -14,7 +14,7 @@ void Zadacha25()
     }
     Console.WriteLine($"Число {numberA} в степени {numberB} = {result}");
 }
-//Zadacha25();
+Zadacha25();
 
 //Задача 27: Напишите программу, которая принимает на вход число и выдаёт сумму цифр в числе.
 
@@ -33,32 +33,47 @@ void Zadacha27()
     sum = sum + number;
     Console.WriteLine("Сумма цифр числа равна = "+ sum);
 }
-//Zadacha27();
+Zadacha27();
 
 //Задача 29: Напишите программу, которая задаёт массив из 8 случайных целых чисел и выводит отсортированный по модулю массив.
-void Zadacha29()
+
+int size = 8;
+int[] array = new int[size];
+FillArray(array);
+PrintArray(array);
+Sort(array);
+PrintArray(array);
+
+void FillArray(int[] array)
 {
     Random random = new Random();
-    int size = 8;
-    int [] numbers = new int [size];
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < array.Length; i++)
     {
-        numbers[i] = random.Next();
+        array[i] = random.Next(-9,10);
     }
-    Console.Write(numbers + " ");
+}
+
+void PrintArray(int[] array)
+{
+    for (int i = 0; i < array.Length; i++)
+    {
+        Console.Write(array[i]+ ",");
+    }
     Console.WriteLine();
 }
-Zadacha29();
 
-  //for (int i = 1; i < size; i++)
-    //{
-      //  if (numbers[i] > max)
-       // {
-         //   max = numbers[i];
-          //  max_i = i;
-           // int tmp = numbers[size-1];
-           // numbers[size-1] = max;
-           // numbers[max_i] = tmp;
-        //}
-    //Console.WriteLine(numbers);
-    //}
+void Sort(int[] array)
+{
+    for (int j = 0; j < array.Length; j++)
+    {
+        for (int i = 0; i < array.Length - 1; i++)
+        {
+            if (Math.Abs(array[i]) > Math.Abs(array[i + 1]))
+            {
+                int temp = array[i];
+                array[i] = array[i + 1];
+                array[i + 1] = temp;
+            }
+        }
+    }
+}
